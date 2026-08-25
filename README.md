@@ -1,6 +1,6 @@
 # Sistema de Inventário Pessoal
 
-Sistema em Python para cadastro e controle de equipamentos pessoais, com cálculo de depreciação.
+Sistema em Python para cadastro e controle de equipamentos pessoais, com cálculo de depreciação e persistência em arquivo JSON.
 
 ## Funcionalidades
 
@@ -10,6 +10,7 @@ Sistema em Python para cadastro e controle de equipamentos pessoais, com cálcul
 - Cálculo de depreciação linear, valor residual e vida útil
 - Alteração de dados de um produto
 - Exclusão por número de série
+- Salvamento e carregamento automático dos dados em arquivo JSON
 
 ## Como executar
 
