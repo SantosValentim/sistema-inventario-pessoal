@@ -72,6 +72,7 @@ class inventarioPessoal():
                 "departamento": departamento,
                 "data_registro": data_registro}
         self.produtos.append(produto)
+        self.salvar_dados()
         
         print("\nProduto registrado com sucesso.\n"
             f"Nome: {nome}\n"
@@ -271,6 +272,7 @@ class inventarioPessoal():
             novo_nome = input("\nDigite o novo nome: ")
             if novo_nome:
                 produto_encontrado["nome"] = novo_nome
+                self.salvar_dados()
                 print("\nNome alterado com sucesso!\n")
             else:
                 print("Nome não pode ser vazio.")
@@ -282,6 +284,7 @@ class inventarioPessoal():
                     print("\nValor não pode ser negativo.\n")
                 else:
                     produto_encontrado["valor"] = novo_valor
+                    self.salvar_dados()
                     print("\nValor alterado com sucesso!\n")
             except ValueError:
                 print("\nValor inválido.\n")
@@ -294,12 +297,14 @@ class inventarioPessoal():
                     print("\nJá existe um produto com esse número de série.\n")
                 else:
                     produto_encontrado["numero_serie"] = novo_serial
+                    self.salvar_dados()
                     print("\nNúmero de série alterado com sucesso!\n")
         
         elif escolha == "4":
             novo_departamento = input("\nDigite o novo departamento: ")
             if novo_departamento:
                 produto_encontrado["departamento"] = novo_departamento
+                self.salvar_dados()
                 print("\nDepartamento alterado com sucesso!\n")
             else:
                 print("\nDepartamento não pode ser vazio.\n")
@@ -332,6 +337,7 @@ class inventarioPessoal():
         confirmacao = input("\nTem certeza que deseja excluir o produto? (S/N)\n").lower()
         if confirmacao == "s":
             self.produtos.remove(produto_encontrado)
+            self.salvar_dados()
             print("\nProduto excluído com sucesso!\n")
         else:
             print("\nExclusão cancelada.\n")
