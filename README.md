@@ -17,5 +17,5 @@ Sistema simples em Python para cadastro e controle de equipamentos pessoais, com
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/sistema-inventario-pessoal.git
+git clone https://github.com/SantosValentim/sistema-inventario-pessoal.git
 cd sistema-inventario-pessoal
