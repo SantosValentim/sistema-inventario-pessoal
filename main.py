@@ -199,41 +199,44 @@ class inventarioPessoal():
 
             if escolha == "0":
                 return
-            elif escolha == "1":
-                vi = float(input("Digite o valor inicial ou da aquisição do produto: "))
-                vr = float(input("Digite o valor residual do produto: "))
-                vu = int (input("Digite a vida útil do produto: ")) 
+            try:
+                if escolha == "1":
+                    vi = float(input("Valor inicial (aquisição): R$"))
+                    vr = float(input("Valor residual: R$ "))
+                    vu = int (input("Vida útil (anos): ")) 
 
-                if vu == 0:
-                    print("Erro: A vida útil não pode ser zero.\n")
-                    return
-                da = (vi-vr)/vu
-                print(f"A depreciação linear do produto é R$ {da:.2f}.")
+                    if vu == 0:
+                        print("Erro: A vida útil não pode ser zero.\n")
+                        return
+                    
+                    da = (vi-vr)/vu
+                    print(f"\nA depreciação linear anual do produto é R$ {da:.2f}.\n")
 
-            elif escolha == "2":
-                vi = float(input("Digite o valor inicial ou de aquisição do produto: "))
-                da = float(input("Digite a depreciação linear do produto: "))
-                vu = int (input("Digite a vida útil do produto: ")) 
-                vr = vi - (da * vu)
-                print(f"O valor residual do produto é R$ {vr:.2f}.")
+                elif escolha == "2":
+                    vi = float(input("Valor inicial (aquisição): R$"))
+                    da = float(input("Digite a depreciação linear do produto: "))
+                    vu = int (input("Vida útil (anos): "))
+                    vr = vi - (da * vu)
+                    print(f"O valor residual do produto é R$ {vr:.2f}.\n")
 
-            elif escolha == "3":
-                vi = float(input("Digite o valor inicial ou de aquisição do produto: "))
-                vr = float(input("Digite o valor residual do produto: "))
-                da = float(input("Digite a depreciação linear do produto: "))
-                vu = (vi - vr)/da
-                
-                if da == 0:
-                    print ("Erro: A depreciação não pode ser zero. ")
-                    return
-                
-                if vu >= 2:
-                    print(f"A vida útil do produto é de aproximadamente {vu:.2f} anos.")
+                elif escolha == "3":
+                    vi = float(input("Valor inicial (aquisição): R$"))
+                    vr = float(input("Valor residual: R$ "))
+                    da = float(input("Depreciação linear anual: R$"))
+                    
+                    if da == 0:
+                        print ("Erro: A depreciação não pode ser zero.\n")
+                        return
+
+                    vu = (vi - vr)/da
+                    ano_texto = "ano" if vu < 2 else "anos"
+                    print(f"\nA vida útil é de aproximadamente {vu:.2f} {ano_texto}.\n")
+                    
                 else:
-                    print(f"A vida útil do produto é de aproximadamente {vu:.2f} ano.")
-
-            else:
-                print("Opção inválida!\n")
+                    print("Opção inválida!\n")
+            
+            except ValueError:
+                print("Erro: Digite apenas números válidos.\n")
 
     def alterar_produto(self):
         if not self.produtos:
