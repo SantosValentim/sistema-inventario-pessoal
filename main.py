@@ -69,48 +69,49 @@ class inventarioPessoal():
             return
         
         # Menu de opções da lista
-        print("\nCOMO DESEJA LISTAR OS PRODUTOS? \n")
-        escolha = input("Digite:\n"
-                    "1 - Ordem de registro (primeiro ao último)\n"
-                    "2 - Ordem de registro (último ao primeiro)\n"
-                    "3 - Nome (A-Z)\n"
-                    "4 - Nome (Z-A)\n"
-                    "5 - Valor (menor ao maior)\n"
-                    "6 - Valor (maior ao menor)\n"
-                    "0 - Sair\n").strip()
-        
-        if escolha == "0":
-            return
-        elif escolha == "1":
-            produtos_ordenados = self.produtos
-            titulo = "ORDEM DE REGISTRO (PRIMEIRO AO ÚLTIMO):"
-        elif escolha == "2":
-            produtos_ordenados = list(reversed(self.produtos))
-            titulo = "ORDEM DE REGISTRO (ÚLTIMO AO PRIMEIRO):"
-        elif escolha == "3":
-            produtos_ordenados = sorted(self.produtos, key=lambda p: p["nome"].lower())
-            titulo = "LISTA DE PRODUTOS DE A-Z:"
-        elif escolha == "4":
-            produtos_ordenados = sorted(self.produtos, key=lambda p: p["nome"].lower(), reverse=True)
-            titulo = "LISTA DE PRODUTOS DE Z-A:"       
-        elif escolha == "5":
-            produtos_ordenados = sorted(self.produtos, key=lambda p: p["valor"])
-            titulo = "LISTA DE PRODUTOS DO MENOR AO MAIOR VALOR:"
-        elif escolha == "6":
-                produtos_ordenados = sorted(self.produtos, key=lambda p: p["valor"], reverse=True)
-                titulo = "LISTA DE PRODUTOS DO MAIOR AO MENOR VALOR:"
-        else:
-            print("Opção inválida!")
-            return
-        
-        # Imprime a lista
-        print(f"\n{titulo}\n")
-        for i, p in enumerate(produtos_ordenados, start=1):
-            print(f"\n[{i}] {p['nome']}\n"
-                f"    Valor: R$ {p['valor']:.2f}\n"
-                f"    Número de série: {p['numero_serie']}\n"
-                f"    Departamento: {p['departamento']}\n"
-                f"    Data: {p['data_registro']}\n")
+        while True:
+            print("\nCOMO DESEJA LISTAR OS PRODUTOS? \n")
+            escolha = input("Digite:\n"
+                        "1 - Ordem de registro (primeiro ao último)\n"
+                        "2 - Ordem de registro (último ao primeiro)\n"
+                        "3 - Nome (A-Z)\n"
+                        "4 - Nome (Z-A)\n"
+                        "5 - Valor (menor ao maior)\n"
+                        "6 - Valor (maior ao menor)\n"
+                        "0 - Voltar\n").strip()
+            
+            if escolha == "0":
+                return
+            elif escolha == "1":
+                produtos_ordenados = self.produtos
+                titulo = "ORDEM DE REGISTRO (PRIMEIRO AO ÚLTIMO):"
+            elif escolha == "2":
+                produtos_ordenados = list(reversed(self.produtos))
+                titulo = "ORDEM DE REGISTRO (ÚLTIMO AO PRIMEIRO):"
+            elif escolha == "3":
+                produtos_ordenados = sorted(self.produtos, key=lambda p: p["nome"].lower())
+                titulo = "LISTA DE PRODUTOS DE A-Z:"
+            elif escolha == "4":
+                produtos_ordenados = sorted(self.produtos, key=lambda p: p["nome"].lower(), reverse=True)
+                titulo = "LISTA DE PRODUTOS DE Z-A:"       
+            elif escolha == "5":
+                produtos_ordenados = sorted(self.produtos, key=lambda p: p["valor"])
+                titulo = "LISTA DE PRODUTOS DO MENOR AO MAIOR VALOR:"
+            elif escolha == "6":
+                    produtos_ordenados = sorted(self.produtos, key=lambda p: p["valor"], reverse=True)
+                    titulo = "LISTA DE PRODUTOS DO MAIOR AO MENOR VALOR:"
+            else:
+                print("Opção inválida!")
+                return
+            
+            # Imprime a lista
+            print(f"\n{titulo}\n")
+            for i, p in enumerate(produtos_ordenados, start=1):
+                print(f"\n[{i}] {p['nome']}\n"
+                    f"    Valor: R$ {p['valor']:.2f}\n"
+                    f"    Número de série: {p['numero_serie']}\n"
+                    f"    Departamento: {p['departamento']}\n"
+                    f"    Data: {p['data_registro']}\n")
             
     def filtrar_produto(self):
         if not self.produtos:
@@ -169,47 +170,51 @@ class inventarioPessoal():
                 f"    Data: {p['data_registro']}\n")
                         
     def calculo (self):
-        print("Cálculo de Depreciação.\n")
-        escolha = input("Digite: \n" 
-                        "1 - Para calcular a depreciação linear (DA) do produto \n"
-                        "2 - Para calcular o valor residual (VR) do produto \n" 
-                        "3 - Para calcular a vida útil (VU) do produto \n").strip() 
+        while True:
+            print("Cálculo de Depreciação.\n")
+            escolha = input("Digite: \n" 
+                            "1 - Calcular a depreciação linear (DA) do produto \n"
+                            "2 - Calcular o valor residual (VR) do produto \n" 
+                            "3 - Calcular a vida útil (VU) do produto \n"
+                            "0 - Voltar\n").strip() 
 
-        if escolha == "1":
-            vi = float(input("Digite o valor inicial ou da aquisição do produto: "))
-            vr = float(input("Digite o valor residual do produto: "))
-            vu = int (input("Digite a vida útil do produto: ")) 
-
-            if vu == 0:
-                print("Erro: A vida útil não pode ser zero.\n")
+            if escolha == "0":
                 return
-            da = (vi-vr)/vu
-            print(f"A depreciação linear do produto é R$ {da:.2f}.")
+            elif escolha == "1":
+                vi = float(input("Digite o valor inicial ou da aquisição do produto: "))
+                vr = float(input("Digite o valor residual do produto: "))
+                vu = int (input("Digite a vida útil do produto: ")) 
 
-        elif escolha == "2":
-            vi = float(input("Digite o valor inicial ou de aquisição do produto: "))
-            da = float(input("Digite a depreciação linear do produto: "))
-            vu = int (input("Digite a vida útil do produto: ")) 
-            vr = vi - (da * vu)
-            print(f"O valor residual do produto é R$ {vr:.2f}.")
+                if vu == 0:
+                    print("Erro: A vida útil não pode ser zero.\n")
+                    return
+                da = (vi-vr)/vu
+                print(f"A depreciação linear do produto é R$ {da:.2f}.")
 
-        elif escolha == "3":
-            vi = float(input("Digite o valor inicial ou de aquisição do produto: "))
-            vr = float(input("Digite o valor residual do produto: "))
-            da = float(input("Digite a depreciação linear do produto: "))
-            vu = (vi - vr)/da
-            
-            if da == 0:
-                print ("Erro: A depreciação não pode ser zero. ")
-                return
-            
-            if vu >= 2:
-                print(f"A vida útil do produto é de aproximadamente {vu:.2f} anos.")
+            elif escolha == "2":
+                vi = float(input("Digite o valor inicial ou de aquisição do produto: "))
+                da = float(input("Digite a depreciação linear do produto: "))
+                vu = int (input("Digite a vida útil do produto: ")) 
+                vr = vi - (da * vu)
+                print(f"O valor residual do produto é R$ {vr:.2f}.")
+
+            elif escolha == "3":
+                vi = float(input("Digite o valor inicial ou de aquisição do produto: "))
+                vr = float(input("Digite o valor residual do produto: "))
+                da = float(input("Digite a depreciação linear do produto: "))
+                vu = (vi - vr)/da
+                
+                if da == 0:
+                    print ("Erro: A depreciação não pode ser zero. ")
+                    return
+                
+                if vu >= 2:
+                    print(f"A vida útil do produto é de aproximadamente {vu:.2f} anos.")
+                else:
+                    print(f"A vida útil do produto é de aproximadamente {vu:.2f} ano.")
+
             else:
-                print(f"A vida útil do produto é de aproximadamente {vu:.2f} ano.")
-
-        else:
-            print("Opção inválida!\n")
+                print("Opção inválida!\n")
 
     def alterar_produto(self):
         if not self.produtos:
