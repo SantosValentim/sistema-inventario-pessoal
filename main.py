@@ -1,9 +1,27 @@
+import json
+import os
 from datetime import datetime
 
 class inventarioPessoal():
     def __init__(self):
+        self.arquivo = "inventario.json"
         self.produtos = []
+        self.carregar_dados()
         
+    def carregar_dados(self):
+            if os.path.exists(self.arquivo):
+                with open(self.arquivo, "r", encoding="utf-8") as f:
+                    self.produtos = json.load(f)
+                print("Dados carregados com sucesso!")
+            else:
+                self.produtos = []
+                print("Nenhum arquivo encontrado. Começando com inventário vazio.")
+    
+    def salvar_dados(self):
+        with open(self.arquivo, "w", encoding="utf-8") as f:
+            json.dump(self.produtos, f, ensure_ascii=False, indent=4)
+        print("Dados salvos com sucesso!")
+    
     # Menu de interação com o usuário
     def escolha (self):
         while True:
