@@ -4,13 +4,13 @@ Sistema em Python para cadastro e controle de equipamentos pessoais, com cálcul
 
 ## Funcionalidades
 
-- Cadastro de equipamentos (nome, valor, número de série, departamento e data de registro)
-- Listagem com várias opções de ordenação (registro, nome A-Z/Z-A, valor crescente/decrescente)
-- Filtro avançado (nome, departamento, faixa de valor, data e hora)
+- Cadastro de equipamentos com validação de campos
+- Listagem com várias opções de ordenação (ordem de registro, nome A-Z/Z-A, valor crescente/decrescente)
+- Filtro avançado por nome, departamento, faixa de valor, data e hora
 - Cálculo de depreciação linear, valor residual e vida útil
 - Alteração de dados de um produto
-- Exclusão por número de série
-- Salvamento e carregamento automático dos dados em arquivo JSON
+- Exclusão por número de série (com confirmação)
+- Salvamento e carregamento automático em arquivo JSON
 
 ## Como executar
 
